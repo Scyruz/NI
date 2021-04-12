@@ -11,10 +11,10 @@ import { Routes, StackNavigationProps } from "../components/Navigation";
 
 const LoginSchema = Yup.object().shape({
     password: Yup.string()
-        .min(2, 'Too Short!')
-        .max(50, 'Too Long!')
-        .required('Required'),
-    email: Yup.string().email('Invalid email').required('Required'),
+        .required('Campo requerido'),
+    email: Yup.string()
+        .email('Correo inválido')
+        .required('Campo requerido'),
 });
 
 
@@ -64,6 +64,9 @@ const Login = ({ navigation }: StackNavigationProps<Routes, "Login">) => {
                             returnKeyLabel="next"
                             onSubmitEditing={() => password.current?.focus()}
                         />
+                        <Text variant="body" color="coral">
+                            {errors.email}
+                        </Text>
                     </Box>
                     <TextInput
                         ref={password}
@@ -80,6 +83,9 @@ const Login = ({ navigation }: StackNavigationProps<Routes, "Login">) => {
                         onSubmitEditing={() => handleSubmit()}
                         secureTextEntry
                     />
+                    <Text variant="body" color="coral">
+                        {errors.password}
+                    </Text>
                     <Box flexDirection="row" justifyContent="space-between">
                         <Checkbox
                             label="Recuérdame   "

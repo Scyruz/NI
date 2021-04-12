@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 const slides =
     [
         {
-            title: "Marlu",
+            title: "Nail It",
             subtitle: "Encuentra Tu Salón Favorito",
             description: "Lalalalalalalalalalalala",
             color: "#BFEAF5",
@@ -66,7 +66,7 @@ const slides =
             },
         },
         {
-            title: "Scyruz",
+            title: "Diferente",
             subtitle: "Agenda Tu Mejor Versión",
             description: "Lalallalalalalalalalalalalala",
             color: "#BEECC4",
@@ -77,7 +77,7 @@ const slides =
             },
         },
         {
-            title: "Arantza",
+            title: "Divertida",
             subtitle: "Tu Estilo a Tu Manera",
             description: "Lalalalalallalalalalala",
             color: "#FFE4D9",
@@ -88,7 +88,7 @@ const slides =
             },
         },
         {
-            title: "Alan",
+            title: "Poderosa",
             subtitle: "Ahora Nadie Te Detiene ",
             description: "Lalalalalalalalal",
             color: "#FFDDDD",

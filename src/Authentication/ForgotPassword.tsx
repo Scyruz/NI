@@ -11,14 +11,16 @@ import TextInput from "../components/Forms/TextInput";
 const ForgotPassword = ({ navigation }: StackNavigationProps<Routes, "ForgotPassword">) => {
     const ForgotPasswordSchema = Yup.object().shape({
         password: Yup.string()
-            .min(2, 'Too Short!')
-            .max(50, 'Too Long!')
-            .required('Required'),
+            .min(4, 'Muy corta!')
+            .max(50, 'Muy larga!')
+            .required('Campo requerido'),
         passwordConfirmation: Yup.string()
             .equals([Yup.ref("password")], "Las contraseñas no coinciden"),
-        email: Yup.string().email('Invalid email').required('Required'),
-
+        email: Yup.string()
+            .email('Correo inválido')
+            .required('Campo requerido'),
     });
+
     const { handleChange, handleBlur, handleSubmit, setFieldValue, values, errors, touched } =
         useFormik({
             validationSchema: ForgotPasswordSchema,
@@ -43,9 +45,6 @@ const ForgotPassword = ({ navigation }: StackNavigationProps<Routes, "ForgotPass
     return (
         <Container pattern={0} {...{ footer }} >
             <Box padding="xl">
-                <Text variant="title1" textAlign="center" marginBottom="l">
-                    ¿Olvidaste tu contraseña?
-                </Text>
                 <Text variant="body" textAlign="center" marginBottom="l">
                     Introduce el correo electrónico asociado a tu cuenta
                 </Text>
@@ -64,6 +63,9 @@ const ForgotPassword = ({ navigation }: StackNavigationProps<Routes, "ForgotPass
                             returnKeyLabel="next"
                             onSubmitEditing={() => password.current?.focus()}
                         />
+                        <Text variant="body" color="coral">
+                            {errors.email}
+                        </Text>
                     </Box>
                     <Box marginBottom="m">
                         <TextInput
@@ -81,6 +83,9 @@ const ForgotPassword = ({ navigation }: StackNavigationProps<Routes, "ForgotPass
                             onSubmitEditing={() => passwordConfirmation.current?.focus()}
                             secureTextEntry
                         />
+                        <Text variant="body" color="coral">
+                            {errors.password}
+                        </Text>
                     </Box>
                     <TextInput
                         ref={passwordConfirmation}
@@ -97,6 +102,9 @@ const ForgotPassword = ({ navigation }: StackNavigationProps<Routes, "ForgotPass
                         onSubmitEditing={() => handleSubmit()}
                         secureTextEntry
                     />
+                    <Text variant="body" color="coral">
+                        {errors.passwordConfirmation}
+                    </Text>
                     <Box alignItems="center" marginTop="m">
                         <Button
                             variant="primary"

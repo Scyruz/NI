@@ -9,12 +9,14 @@ import { Routes, StackNavigationProps } from "../components/Navigation";
 
 const SignUpSchema = Yup.object().shape({
     password: Yup.string()
-        .min(2, 'Too Short!')
-        .max(50, 'Too Long!')
-        .required('Required'),
+        .min(4, 'Muy corta!')
+        .max(50, 'Muy larga!')
+        .required('Campo requerido'),
     passwordConfirmation: Yup.string()
         .equals([Yup.ref("password")], "Las contraseñas no coinciden"),
-    email: Yup.string().email('Invalid email').required('Required'),
+    email: Yup.string()
+        .email('Correo inválido')
+        .required('Campo requerido'),
 });
 
 const SignUp = ({ navigation }: StackNavigationProps<Routes, "SignUp">) => {
@@ -64,6 +66,9 @@ const SignUp = ({ navigation }: StackNavigationProps<Routes, "SignUp">) => {
                             returnKeyLabel="next"
                             onSubmitEditing={() => password.current?.focus()}
                         />
+                        <Text variant="body" color="coral">
+                            {errors.email}
+                        </Text>
                     </Box>
                     <Box marginBottom="m">
                         <TextInput
@@ -81,6 +86,9 @@ const SignUp = ({ navigation }: StackNavigationProps<Routes, "SignUp">) => {
                             onSubmitEditing={() => passwordConfirmation.current?.focus()}
                             secureTextEntry
                         />
+                        <Text variant="body" color="coral">
+                            {errors.password}
+                        </Text>
                     </Box>
                     <TextInput
                         ref={passwordConfirmation}
@@ -97,6 +105,9 @@ const SignUp = ({ navigation }: StackNavigationProps<Routes, "SignUp">) => {
                         onSubmitEditing={() => handleSubmit()}
                         secureTextEntry
                     />
+                    <Text variant="body" color="coral">
+                        {errors.passwordConfirmation}
+                    </Text>
                     <Box alignItems="center" marginTop="m">
                         <Button
                             variant="primary"

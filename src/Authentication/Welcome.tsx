@@ -45,11 +45,11 @@ const Welcome =
                             onPress={() => navigation.navigate("Login")} />
                         <Button
                             label="Únete, es Gratis"
-                            onPress={() => true} />
+                            onPress={() => navigation.navigate("SignUp")} />
                         <Button
                             variant="transparent"
                             label="¿Olvidaste tu contraseña?"
-                            onPress={() => true} />
+                            onPress={() => navigation.navigate("ForgotPassword")} />
                     </Box>
                 </Box >
             </Box >
